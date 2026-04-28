@@ -1,0 +1,9 @@
+git config -- user.name Gabriel9Nicoletti
+git config -- user.email gabrielhn.28.pinheiro@gmail.com
+
+npx create-expo-app@latest GabsShoppingList --template blank
+
+cd GabsShoppingList
+npx expo start --tunnel
+npx expo start --android
+
