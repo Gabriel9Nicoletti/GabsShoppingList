@@ -7,10 +7,10 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "scheme": "gabsshoppinglist",
+    "scheme": "gabsshoppinglist-scheme",
     "experiments": {
-      "typedRoutes": true
-    },
+    "typedRoutes": true
+  },
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
