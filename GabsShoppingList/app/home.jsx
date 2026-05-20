@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {
-    Alert, 
+    Alert,
+    FlatList,
     ImageBackground,
     StyleSheet,
     Text,
@@ -10,15 +11,32 @@ import {
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 
+
 export default function Home() {
+    const [textInput, setTextInput] = useState('');
+    const [items, setItems] = useState('');
+
 
     function addProduto() {
-        Alert.alert("Adicionar Produto");
+        if (textInput == '') {
+            Alert.alert(
+                'Ocorreu um problema :(',
+                'Por favor, informe o nome produto'
+            );
+            return;
+        }
+        const newItem = {
+                id: Date.now().toString(),
+                name: textInput,
+                bought: false
+        };
+        setItems([...items, newItem]);
+        setTextInput('');
     }
-
+        
   return (
-    <View style={{flex:1, backgroundColor: '#000'}}>
-        <ImageBackground
+      <View style={{flex:1, backgroundColor: '#000'}}>
+      <ImageBackground
             source={require('../assets/background.jpg')}
             resizeMode ='repeat'
             style={{ flex: 1, justifyContent: 'flex-start' }}
@@ -29,6 +47,14 @@ export default function Home() {
             </View>
 
             {/* Lista de Produtos */ }
+            <FlatList
+                contentContainerStyle={{paddig: 20, paddingBottom: 100, color:'#fff'}}
+                data={items}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => <Text>{item.name}</Text>
+            
+            }
+            /> 
 
             <View style={styles.footer}>
                 <View style={styles.inputContainer}>
@@ -37,6 +63,8 @@ export default function Home() {
                     fontSize={18}
                     placeholder='Digite o nome do produto...'
                     placeholderTextColor="#aeaeae"
+                    value={textInput}
+                    onChangeText={()} //adicionar o q falta!!!!
                     />
                 </View>
                 <TouchableOpacity style={styles.iconContainer} onPress={addProduto} >
