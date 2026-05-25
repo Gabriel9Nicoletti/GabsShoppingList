@@ -10,6 +10,7 @@ import {
     View
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
+import ItemList from '../components/ItemList';
 
 
 export default function Home() {
@@ -51,7 +52,8 @@ export default function Home() {
                 contentContainerStyle={{paddig: 20, paddingBottom: 100, color:'#fff'}}
                 data={items}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => <Text>{item.name}</Text>
+                renderItem={({ item }) =>
+                    <ItemList item={item} />
             
             }
             /> 
@@ -64,7 +66,7 @@ export default function Home() {
                     placeholder='Digite o nome do produto...'
                     placeholderTextColor="#aeaeae"
                     value={textInput}
-                    onChangeText={()} //adicionar o q falta!!!!
+                    onChangeText={(text) => setTextInput(text)}
                     />
                 </View>
                 <TouchableOpacity style={styles.iconContainer} onPress={addProduto} >
